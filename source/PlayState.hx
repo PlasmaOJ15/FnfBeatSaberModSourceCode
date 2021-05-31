@@ -1156,6 +1156,8 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'thorns':
 					schoolIntro(doof);
+				case 'unlimitedpower':
+					swapsaber(doof);
 				default:
 					startCountdown();
 			}
@@ -1174,7 +1176,16 @@ class PlayState extends MusicBeatState
 
 		super.create();
 	}
-
+	function swapsaber(dialogueBox:DialogueBox):Void
+	{
+		inCutscene = true;
+		dad.animation.play('swap', true);
+		
+		new FlxTimer().start(1,function(swagTimer:FlxTimer)
+		{
+		startCountdown();
+		});
+	}
 	function schoolIntro(?dialogueBox:DialogueBox):Void
 	{
 		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
